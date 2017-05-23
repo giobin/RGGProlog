@@ -1,2 +1,2 @@
 # RGGProlog
-Prolog project from the course of Articial Intelligence.
+Prolog project for the course of Articial Intelligence.
