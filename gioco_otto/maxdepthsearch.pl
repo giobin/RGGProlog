@@ -15,7 +15,7 @@ maxdepthsearch(Depth) :-
 
 maxd_search(S,_,_,[]) :- final(S),!.
 maxd_search(S,Depth,Visited,[Action|MovesSequence]) :-
-	Depth > 1,
+	Depth > 0,
 	NewDepth is Depth - 1,
 	applicable(Action,S),
 	transform(Action,S,NewState),
