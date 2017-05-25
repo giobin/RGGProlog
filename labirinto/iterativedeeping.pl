@@ -12,7 +12,7 @@ startItDeep :-
   retractall(currentMaxDepth(_)),
 	assertz(currentMaxDepth(0)),
   assertz(cutoff),
-	iterativeDeepening(Moves),
+	iterativeDeepening(Moves),!,
 	write(Moves).
 
 iterativeDeepening(Moves) :-
@@ -37,6 +37,6 @@ it_deep(State,Depth,Visited,[Action|MovesSequence]) :-
 	\+member(NewState,Visited),
 	it_deep(NewState,NewDepth,[NewState|Visited],MovesSequence).
 it_deep(State,_,_,[]) :-
-  applicable(_,State),
+  applicable(_,State),!,
   assertz(cutoff),
   fail.
