@@ -17,6 +17,8 @@ startItDeep :-
   assertz(cutoff),
   statistics(walltime, [_ | [_]]),
 	iterativeDeepening(Moves),!,
+  length(Moves,Length),
+  format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
 iterativeDeepening(Moves) :-

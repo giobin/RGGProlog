@@ -16,7 +16,10 @@ breadthfirstsearch :-
   bf_search([node(State,[])],[],Moves),
   write(Moves).
 
-bf_search([node(State,ActionList)|_],_,ActionList) :- final(State),!.
+bf_search([node(State,ActionList)|_],Visited,ActionList) :- 
+  final(State),!,
+  length(Visited,Length),
+  format('~w~w~n', ['Closed nodes : ',Length]).
 bf_search([node(State,ActionList)|OtherNodes],Visited,Solution) :-
   expand(node(State,ActionList),[State|Visited],SuccesorStates),
   append(OtherNodes,SuccesorStates,NewTail),

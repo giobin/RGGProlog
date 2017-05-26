@@ -24,6 +24,8 @@ startItDeepStar :-
 idastar :-
   initial(InitialState),
   i_star(InitialState,0,[InitialState],Moves), %InitialState,Gn,ecc
+  length(Moves,Length),
+  format('~w~w~w~n', ['Solution length : ',Length, '.']),
   write(Moves).
 idastar :-
     retractall(currentMaxFn(_)),
