@@ -16,7 +16,10 @@ maxdepthsearch(Depth) :-
 	maxd_search(InitialState,Depth,[InitialState],Moves),
 	write(Moves).
 
-maxd_search(S,_,_,[]) :- final(S),!.
+maxd_search(S,_,Visited,[]) :- 
+	final(S),!,
+	length(Visited,Length),
+	format('~w~w~n', ['Closed nodes : ',Length]).
 maxd_search(S,Depth,Visited,[Action|MovesSequence]) :-
 	Depth > 0,
 	NewDepth is Depth - 1,

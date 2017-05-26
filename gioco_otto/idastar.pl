@@ -30,12 +30,14 @@ idastar :-
     retractall(newMinFn(Fn)),
     idastar.
 
- i_star(State,Gn,_,[]) :-
+ i_star(State,Gn,Visited,[]) :-
     final(State),
     evaluate(State,0,Hn),
     currentMaxFn(FnC),
     Fn is Gn + Hn,
-    Fn =< FnC,!.
+    Fn =< FnC,!,
+    length(Visited,Length),
+    format('~w~w~n', ['Closed nodes : ',Length]).
  i_star(State,Gn,Visited,[Action|MovesSequence]) :-
     evaluate(State,0,Hn),
     currentMaxFn(FnC),
