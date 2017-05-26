@@ -20,6 +20,8 @@ astar :-
 astar_while(Open,Closed,Solution):-
 	select(Open,Closed,node(State,Gn,Hn,Father),_,_),
 	final(State),!,
+	length(Closed,Length),
+	write('Closed nodes : '),write(Length),write('\n'),
   print_solution(node(State,Gn,Hn,Father),Solution).
 
 astar_while(Open,Closed,Solution) :-
