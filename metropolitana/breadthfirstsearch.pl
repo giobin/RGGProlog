@@ -44,7 +44,7 @@ fAll([_|OtherActions],State,OtherApplicableActions) :-
 successor(_,[],_,Frontier,Frontier) :- !.
 successor(node(State,Gn,ActionList),[Action|OtherApplicableActions],Visited,Frontier,NewFrontier) :-
   transform(Action,State,NewState),
-  \+member(NewState,Visited),!,
+  \+member(node(NewState,_,_),Visited),!,
   append(ActionList,[Action],NewActionList),
   checkDistance(State,Gn,NewState,NewActionList,Frontier,TempFrontier),
   successor(node(State,Gn,ActionList),OtherApplicableActions,Visited,TempFrontier,NewFrontier).
