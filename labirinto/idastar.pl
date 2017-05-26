@@ -14,6 +14,7 @@
 startItDeepStar :-
   retractall(currentMaxFn(_)),
   retractall(newMinFn(_)),
+  statistics(walltime, [_ | [_]]),
   initial(InitialState),
   evaluate(InitialState,Hn),
   assertz(currentMaxFn(Hn)),
@@ -23,13 +24,15 @@ startItDeepStar :-
 idastar :-
   initial(InitialState),
   i_star(InitialState,0,[InitialState],Moves), %InitialState,Gn,ecc
+  statistics(walltime, [_ | [ExecutionTime]]),
+  format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
   write(Moves).
 idastar :-
-    retractall(currentMaxFn(_)),
-    newMinFn(Fn),
-    assertz(currentMaxFn(Fn)),
-    retractall(newMinFn(Fn)),
-    idastar.
+  retractall(currentMaxFn(_)),
+  newMinFn(Fn),
+  assertz(currentMaxFn(Fn)),
+  retractall(newMinFn(Fn)),
+  idastar.
 
  i_star(State,Gn,_,[]) :-
     final(State),

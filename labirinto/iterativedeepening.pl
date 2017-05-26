@@ -15,6 +15,7 @@ startItDeep :-
   retractall(currentMaxDepth(_)),
 	assertz(currentMaxDepth(0)),
   assertz(cutoff),
+  statistics(walltime, [_ | [_]]),
 	iterativeDeepening(Moves),!,
 	write(Moves).
 
@@ -30,7 +31,9 @@ iterativeDeepening(Moves) :-
 	assertz(currentMaxDepth(NewMaxDepth)),
 	iterativeDeepening(Moves).
 
-it_deep(State,_,_,[]) :- final(State),!.
+it_deep(State,_,_,[]) :- final(State),!,
+  statistics(walltime, [_ | [ExecutionTime]]),
+  format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 it_deep(State,Depth,Visited,[Action|MovesSequence]) :-
 	NewDepth is Depth + 1,
 	currentMaxDepth(MaxDepth),

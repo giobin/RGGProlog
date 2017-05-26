@@ -12,11 +12,14 @@
 
 % Depth-limited search
 maxdepthsearch(Depth) :-
+	statistics(walltime, [_ | [_]]),
 	initial(InitialState),
 	maxd_search(InitialState,Depth,[InitialState],Moves),
 	write(Moves).
 
-maxd_search(S,_,_,[]) :- final(S),!.
+maxd_search(S,_,_,[]) :- final(S),!,
+	statistics(walltime, [_ | [ExecutionTime]]),
+	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 maxd_search(S,Depth,Visited,[Action|MovesSequence]) :-
 	Depth > 0,
 	NewDepth is Depth - 1,

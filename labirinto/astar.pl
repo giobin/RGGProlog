@@ -12,6 +12,7 @@
 
 % A* search algorithm
 astar :-
+	statistics(walltime, [_ | [_]]),
 	initial(InitialState),
 	evaluate(InitialState,Hn),
 	astar_while([node(InitialState,0,Hn,father(nil,nil))],[],Solution),
@@ -20,6 +21,8 @@ astar :-
 astar_while(Open,Closed,Solution):-
 	select(Open,Closed,node(State,Gn,Hn,Father),_,_),
 	final(State),!,
+	statistics(walltime, [_ | [ExecutionTime]]),
+	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
   print_solution(node(State,Gn,Hn,Father),Solution).
 
 astar_while(Open,Closed,Solution) :-
