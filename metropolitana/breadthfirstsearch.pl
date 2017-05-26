@@ -15,6 +15,8 @@ breadthfirstsearch :-
   statistics(walltime, [_ | [_]]),
   initial(State),
   bf_search([node(State,0,[])],[],Moves),  %node(State,Gn,Action)
+  length(Moves,Length),
+  format('~w~w~w~n', ['Solution length : ',Length, '.']),
   write(Moves).
 
 bf_search([node(State,_,ActionList)|_],Visited,ActionList) :-

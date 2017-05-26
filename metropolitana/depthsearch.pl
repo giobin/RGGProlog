@@ -22,7 +22,9 @@ depthsearch_cc :-
 	statistics(walltime, [_ | [_]]),
 	initial(InitialState),
 	d_search_cc(InitialState,[InitialState],Moves),
-	write(Moves).
+	length(Moves,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
+	writeln(Moves).
 
 d_search(State,[]):-
 	final(State),!,
