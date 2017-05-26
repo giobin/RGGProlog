@@ -26,8 +26,13 @@ expand(node(State,Gn,ActionList),Visited,Frontier,NewFrontier) :-
   successor(node(State,Gn,ActionList),ApplicableActions,Visited,Frontier,NewFrontier).
 
 % Returns all applicable actions of the state State.
-findAll(State,ApplicableActions) :-
-  fAll([geton(_,_),getoff(_),go(_,_,_,_)],State,ApplicableActions). % qui quindi non c'è più il punto di scelta come in profondità e termina quando trova la prima soluzione che sarà anche quella ottima.
+% findAll(State,ApplicableActions) :-
+%   fAll([geton(_,_),getoff(_),go(_,_,_,_)],State,ApplicableActions). % qui quindi non c'è più il punto di scelta come in profondità e termina quando trova la prima soluzione che sarà anche quella ottima.
+
+findAll([at(Station),ground],ApplicableActions) :- !,
+  fAll([geton(_,0),geton(_,1)],[at(Station),ground],ApplicableActions). % qui quindi non c'è più il punto di scelta come in profondità e termina quando trova la prima soluzione che sarà anche quella ottima.
+findAll([at(Station),in(Line,Dir)],ApplicableActions) :-
+  fAll([getoff(Station),go(Line,Dir,Station,_)],[at(Station),in(Line,Dir)],ApplicableActions). % qui quindi non c'è più il punto di scelta come in profondità e termina quando trova la prima soluzione che sarà anche quella ottima.
 
 fAll([],_,[]) :- !.
 fAll([Action|OtherActions],State,[Action|OtherApplicableActions]) :-
