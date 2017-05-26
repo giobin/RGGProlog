@@ -22,13 +22,17 @@ depthsearch_cc :-
 	d_search_cc(InitialState,[InitialState],Moves),
 	write(Moves).
 
-d_search(State,[]):-final(State),!.
+d_search(State,[]):-
+	final(State),!.
 d_search(State,[Action|MovesSequence]):-
 	applicable(Action,State),
 	transform(Action,State,NewState),
 	d_search(NewState,MovesSequence).
 
-d_search_cc(State,_,[]):-final(State),!.
+d_search_cc(State,Visited,[]):-
+	final(State),!,
+	length(Visited,Length),
+  format('~w~w~n', ['Closed nodes : ',Length]).
 d_search_cc(State,Visited,[Action|MovesSequence]):-
 	applicable(Action,State),
 	transform(Action,State,NewState),
