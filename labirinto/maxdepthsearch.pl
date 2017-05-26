@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('maxdepthsearch.pl'), maxdepthsearch(...).
+%  -------------------------------COMMANDS-------------------------------
+% consult('maps/map1-fail-10x10.pl'), consult('utility.pl'), consult('maxdepthsearch.pl').
+% Ex: maxdepthsearch(10).
 
 % Depth-limited search
 maxdepthsearch(Depth) :-

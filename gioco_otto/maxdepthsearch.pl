@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), maxdepthsearch(...).
+%  -------------------------------COMMANDS-------------------------------
+% consult('utility.pl').
+% Ex: maxdepthsearch(10).
 
 % Depth-limited search
 maxdepthsearch(Depth) :-

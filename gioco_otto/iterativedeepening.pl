@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('iterativedeeping.pl'), startItDeep.
+%  -------------------------------COMMANDS-------------------------------
+% consult('utility.pl'), consult('iterativedeeping.pl').
+% startItDeep.
 
 % Iterative deepening depth-first search
 startItDeep :-

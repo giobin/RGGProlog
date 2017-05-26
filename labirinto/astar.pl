@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('astar.pl'), astar.
+%  -------------------------------COMMANDS-------------------------------
+% consult('maps/map1-fail-10x10.pl'), ('utility.pl'), consult('astar.pl').
+% astar.
 
 % A* search algorithm
 astar :-

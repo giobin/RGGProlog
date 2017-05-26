@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('breadthfirstsearch.pl'), breadthfirstsearch.
+% -------------------------------COMMANDS-------------------------------
+% consult('maps/map1-fail-10x10.pl'),consult('utility.pl'), consult('breadthfirstsearch.pl').
+% breadthfirstsearch.
 
 % Breadth-first search
 breadthfirstsearch :-

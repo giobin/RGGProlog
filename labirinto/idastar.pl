@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('idastar.pl'), startItDeepStar.
+%  -------------------------------COMMANDS-------------------------------
+% consult('maps/map1-fail-10x10.pl'), consult('utility.pl'), consult('idastar.pl').
+% startItDeepStar.
 
 % Iterative deepening A*
 startItDeepStar :-

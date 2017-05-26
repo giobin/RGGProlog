@@ -1,12 +1,13 @@
-% Authors: Riccardo Renzulli, Gabriele Sartor, Giovanni Bonetta
+% Authors: Riccardo Renzulli, Gabriele Sartor
 % Università degli Studi di Torino
 % Department of Computer Science
-% Date: May 2017
+% Date: September 2016
 % riccardo.renzulli@edu.unito.it
 % gabriele.sartor@edu.unito.it
-% giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('astar.pl'), astar.
+%  -------------------------------COMMANDS-------------------------------
+% consult('utility.pl'), consult('astar.pl').
+% astar.
 
 % A* search algorithm
 astar :-
