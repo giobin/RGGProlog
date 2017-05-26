@@ -14,6 +14,8 @@
 depthsearch :-
 	initial(InitialState),
 	d_search(InitialState,Moves),
+	length(Moves,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
 % Depthsearch with cycles control
