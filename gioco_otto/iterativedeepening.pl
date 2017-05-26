@@ -14,9 +14,12 @@
 startItDeep :-
   retractall(currentMaxDepth(_)),
 	assertz(currentMaxDepth(0)),
+  statistics(walltime, [_ | [_]]),
 	iterativeDeepening(Moves),
+  statistics(walltime, [_ | [ExecutionTime]]),
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
+  format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
 	write(Moves).
 
 iterativeDeepening(Moves) :-
