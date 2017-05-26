@@ -12,11 +12,16 @@
 
 % Depth-limited search
 maxdepthsearch(Depth) :-
+	statistics(walltime, [_ | [_]]),
 	initial(InitialState),
 	maxd_search(InitialState,Depth,[InitialState],Moves),
 	write(Moves).
 
-maxd_search(S,_,Visited,[]) :- final(S),!,length(Visited,Length), format('~w~w~n',['expanded nodes: ',Length]).
+maxd_search(S,_,Visited,[]) :- final(S),!,
+	statistics(walltime, [_ | [ExecutionTime]]),
+	length(Visited,Length),
+	format('~w~w~n',['expanded nodes: ',Length]),
+	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 maxd_search(S,Depth,Visited,[Action|MovesSequence]) :-
 	Depth > 0,
 	NewDepth is Depth - 1,

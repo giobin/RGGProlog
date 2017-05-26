@@ -14,6 +14,7 @@
 startItDeepStar :-
   retractall(currentMaxFn(_)),
   retractall(newMinFn(_)),
+  statistics(walltime, [_ | [_]]),
   initial(InitialState),
   evaluate(InitialState,Hn),
   assertz(currentMaxFn(Hn)),
@@ -33,12 +34,14 @@ idastar :-
 
  i_star(State,Gn,Visited,[]) :-
     final(State),
+    statistics(walltime, [_ | [ExecutionTime]]),
     evaluate(State,Hn),
     currentMaxFn(FnC),
     Fn is Gn + Hn,
     Fn =< FnC,!,
     length(Visited,Length),
-    format('~w~w~n', ['Closed nodes : ',Length]).
+    format('~w~w~n', ['Closed nodes : ',Length]),
+    format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
  i_star(State,Gn,Visited,[Action|MovesSequence]) :-
     evaluate(State,Hn),
     currentMaxFn(FnC),

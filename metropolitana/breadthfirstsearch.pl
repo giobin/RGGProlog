@@ -12,14 +12,17 @@
 
 % Breadth-first search / Uniform-cost search
 breadthfirstsearch :-
+  statistics(walltime, [_ | [_]]),
   initial(State),
   bf_search([node(State,0,[])],[],Moves),  %node(State,Gn,Action)
   write(Moves).
 
 bf_search([node(State,_,ActionList)|_],Visited,ActionList) :-
   final(State),!,
+  statistics(walltime, [_ | [ExecutionTime]]),
   length(Visited,Length),
-  format('~w~w~n', ['Closed nodes : ',Length]).
+  format('~w~w~n', ['Closed nodes : ',Length]),
+  format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 bf_search(Frontier,Visited,Solution) :-
   min1(Frontier,MinNode),
   delete(Frontier,MinNode,TempFrontier),
