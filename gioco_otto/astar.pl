@@ -6,7 +6,7 @@
 % gabriele.sartor@edu.unito.it
 
 %  -------------------------------COMMANDS-------------------------------
-% consult('utility.pl'), consult('astar.pl').
+% consult('histories/history2-ok.pl'), consult('utility.pl'), consult('astar.pl').
 % astar.
 
 % A* search algorithm

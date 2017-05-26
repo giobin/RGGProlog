@@ -7,7 +7,7 @@
 % giovanni.bonetta@edu.unito.it
 
 %  -------------------------------COMMANDS-------------------------------
-% consult('utility.pl'), consult('breadthfirstsearch.pl').
+% consult('histories/history2-ok.pl'), consult('utility.pl'), consult('breadthfirstsearch.pl').
 % breadthfirstsearch.
 
 % Breadth-first search

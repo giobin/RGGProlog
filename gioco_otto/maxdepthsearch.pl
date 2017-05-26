@@ -7,7 +7,7 @@
 % giovanni.bonetta@edu.unito.it
 
 %  -------------------------------COMMANDS-------------------------------
-% consult('utility.pl').
+% consult('histories/history2-ok.pl'), consult('utility.pl').
 % Ex: maxdepthsearch(10).
 
 % Depth-limited search

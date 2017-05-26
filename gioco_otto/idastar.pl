@@ -7,7 +7,7 @@
 % giovanni.bonetta@edu.unito.it
 
 %  -------------------------------COMMANDS-------------------------------
-% consult('utility.pl'), consult('idastar.pl').
+% consult('histories/history2-ok.pl'), consult('utility.pl'), consult('idastar.pl').
 % startItDeepStar.
 
 % Iterative deepening A*
