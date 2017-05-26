@@ -14,9 +14,11 @@
 breadthfirstsearch :-
   initial(State),
   bf_search([node(State,[])],[],Moves),
+	length(Moves,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
   write(Moves).
 
-bf_search([node(State,ActionList)|_],Visited,ActionList) :- 
+bf_search([node(State,ActionList)|_],Visited,ActionList) :-
   final(State),!,
   length(Visited,Length),
   format('~w~w~n', ['Closed nodes : ',Length]).

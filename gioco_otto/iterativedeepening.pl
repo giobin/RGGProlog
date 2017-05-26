@@ -15,6 +15,8 @@ startItDeep :-
   retractall(currentMaxDepth(_)),
 	assertz(currentMaxDepth(0)),
 	iterativeDeepening(Moves),
+	length(Moves,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
 iterativeDeepening(Moves) :-

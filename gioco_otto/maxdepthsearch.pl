@@ -14,9 +14,11 @@
 maxdepthsearch(Depth) :-
 	initial(InitialState),
 	maxd_search(InitialState,Depth,[InitialState],Moves),
+	length(Moves,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
-maxd_search(S,_,Visited,[]) :- 
+maxd_search(S,_,Visited,[]) :-
 	final(S),!,
 	length(Visited,Length),
 	format('~w~w~n', ['Closed nodes : ',Length]).
