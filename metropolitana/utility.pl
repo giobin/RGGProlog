@@ -80,7 +80,6 @@ station('Westminster',8,1.8).
 
 stop(Station,Line):- path(Line,0,P), member(Station,P).
 
-
 initial([at('Bayswater'),ground]).
 
 final([at('Covent Garden'),ground]).

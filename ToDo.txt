@@ -1,0 +1,3 @@
+1) Dobbiamo fermarci alla prima soluzione oppure ne vogliamo anche altre?
+2) Il gioco dell'8 ha sempre soluzione?
+3) Nella ricerca in profondità per il labirinto, quando espando un nodo prendo il minimo?
