@@ -10,8 +10,7 @@
 % A* search algorithm
 astar :-
 	initial(InitialState),
-	final(FinalState),
-	distance(InitialState,FinalState,Hn),
+	evaluate(InitialState,Hn),
 	astar_while([node(InitialState,0,Hn,father(nil,nil))],[],Solution),
 	write(Solution).
 
@@ -61,9 +60,8 @@ fAll([_|OtherActions],State,OtherApplicableActions) :-
 
 successor(_,[],[]) :- !.
 successor(node(State,Gn,Hn,Father),[Action|OtherApplicableActions],[node(NewState,GnS,HnS,father(Action,node(State,Gn,Hn,Father)))|SuccessorList]) :-
-	final(FinalState),
 	transform(Action,State,NewState),
-  distance(NewState,FinalState,HnS), % calcoliamo già nell'expand fn prov
+  evaluate(NewState,HnS), % calcoliamo già nell'expand fn prov
 	distance(State,NewState,Cost),
 	GnS is Gn + Cost,
   successor(node(State,Gn,Hn,Father),OtherApplicableActions,SuccessorList).

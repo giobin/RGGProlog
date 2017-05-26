@@ -92,3 +92,13 @@ distance([at(Station)|_],[at(NewStation)|_],C) :-
 	AbsDeltaX is abs(DeltaX),
 	AbsDeltaY is abs(DeltaY),
 	C is AbsDeltaX + AbsDeltaY.
+
+evaluate([at(Station)|_],Hn) :-
+	final([at(FinalStation),_]),
+	station(Station,Coord1,Coord2),
+	station(FinalStation,Coord1New,Coord2New),
+	DeltaX is Coord1 - Coord1New,
+	DeltaY is Coord2 - Coord2New,
+	AbsDeltaX is abs(DeltaX),
+	AbsDeltaY is abs(DeltaY),
+	Hn is AbsDeltaX + AbsDeltaY.
