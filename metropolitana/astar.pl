@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('astar.pl'), astar.
+% -------------------------------COMMANDS-------------------------------
+% consult('domain.pl'), consult('utility.pl'), consult('histories/history1.pl'), consult('astar.pl').
+% astar.
 
 % A* search algorithm
 astar :-

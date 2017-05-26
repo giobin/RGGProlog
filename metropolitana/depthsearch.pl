@@ -6,7 +6,9 @@
 % gabriele.sartor@edu.unito.it
 % giovanni.bonetta@edu.unito.it
 
-% consult('utility.pl'), consult('depthsearch.pl'), depthsearch.
+%  -------------------------------COMMANDS-------------------------------
+% consult('domain.pl'), consult('utility.pl'), consult('histories/history1.pl'), consult('depthsearch.pl').
+% depthsearch_cc.
 
 % Depthsearch with loop
 depthsearch :-
