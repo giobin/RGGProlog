@@ -33,8 +33,10 @@ iterativeDeepening(Moves) :-
 	assertz(currentMaxDepth(NewMaxDepth)),
 	iterativeDeepening(Moves).
 
-it_deep(State,_,_,[]) :- final(State),!,
+it_deep(State,_,Visited,[]) :- final(State),!,
   statistics(walltime, [_ | [ExecutionTime]]),
+  length(Visited,Length),
+	format('~w~w~n', ['Closed nodes : ',Length]),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 it_deep(State,Depth,Visited,[Action|MovesSequence]) :-
 	NewDepth is Depth + 1,

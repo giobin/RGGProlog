@@ -36,8 +36,10 @@ d_search(State,[Action|MovesSequence]):-
 	transform(Action,State,NewState),
 	d_search(NewState,MovesSequence).
 
-d_search_cc(State,_,[]):-final(State),!,
+d_search_cc(State,Visited,[]):-final(State),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
+	length(Visited,Length),
+	format('~w~w~n', ['Closed nodes : ',Length]),
 	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 d_search_cc(State,Visited,[Action|MovesSequence]):-
 	applicable(Action,State),

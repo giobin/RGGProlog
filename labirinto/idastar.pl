@@ -24,13 +24,10 @@ startItDeepStar :-
 idastar :-
   initial(InitialState),
   i_star(InitialState,0,[InitialState],Moves), %InitialState,Gn,ecc
-<<<<<<< HEAD
   statistics(walltime, [_ | [ExecutionTime]]),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
-=======
   length(Moves,Length),
   format('~w~w~w~n', ['Solution length : ',Length, '.']),
->>>>>>> fc231df0990874dac6f9f52cabe82cb209bf364a
   write(Moves).
 idastar :-
   retractall(currentMaxFn(_)),

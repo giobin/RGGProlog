@@ -19,8 +19,10 @@ maxdepthsearch(Depth) :-
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
-maxd_search(S,_,_,[]) :- final(S),!,
+maxd_search(S,_,Visited,[]) :- final(S),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
+	length(Visited,Length),
+	format('~w~w~n', ['Closed nodes : ',Length]),
 	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 maxd_search(S,Depth,Visited,[Action|MovesSequence]) :-
 	Depth > 0,

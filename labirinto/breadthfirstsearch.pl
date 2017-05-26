@@ -19,9 +19,11 @@ breadthfirstsearch :-
   format('~w~w~w~n', ['Solution length : ',Length, '.']),
   write(Moves).
 
-bf_search([node(State,ActionList)|_],_,ActionList) :-
+bf_search([node(State,ActionList)|_],Visited,ActionList) :-
   final(State),!,
   statistics(walltime, [_ | [ExecutionTime]]),
+  length(Visited,Length),
+	format('~w~w~n', ['Closed nodes : ',Length]),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 bf_search([node(State,ActionList)|OtherNodes],Visited,Solution) :-
   expand(node(State,ActionList),[State|Visited],SuccesorStates),
