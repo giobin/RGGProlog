@@ -1,3 +1,11 @@
+% Authors: Riccardo Renzulli, Gabriele Sartor, Giovanni Bonetta
+% Università degli Studi di Torino
+% Department of Computer Science
+% Date: May 2017
+% riccardo.renzulli@edu.unito.it
+% gabriele.sartor@edu.unito.it
+% giovanni.bonetta@edu.unito.it
+
 % stato: [at(station), Location]
 % Location può essere in(NomeLine, Dir) o
 %  'ground' se l'agente non è su nessun treno
