@@ -15,6 +15,8 @@ astar :-
 	initial(InitialState),
 	evaluate(InitialState,Hn),
 	astar_while([node(InitialState,0,Hn,father(nil,nil))],[],Solution),
+	length(Solution,Length),
+	format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Solution).
 
 astar_while(Open,Closed,Solution):-
