@@ -7,7 +7,7 @@
 % giovanni.bonetta@edu.unito.it
 
 %  -------------------------------COMMANDS-------------------------------
-% consult('histories/history2-ok.pl'), consult('utility.pl'), consult('iterativedeeping.pl').
+% consult('histories/history5-ok.pl'), consult('utility.pl'), consult('iterativedeepening.pl').
 % startItDeep.
 
 % Iterative deepening depth-first search
@@ -20,7 +20,7 @@ startItDeep :-
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
-	write(Moves).
+	write(Moves),!.
 
 iterativeDeepening(Moves) :-
 	initial(InitialState),
@@ -32,6 +32,7 @@ iterativeDeepening(Moves) :-
 	assertz(currentMaxDepth(NewMaxDepth)),
 	iterativeDeepening(Moves).
 
+it_deep([1,2,3,4,5,6,empty,8,7],_,_,_):- write('Fail.\n'),abort.
 it_deep(State,_,Visited,[]) :-
   final(State),!,
   length(Visited,Length),

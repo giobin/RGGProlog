@@ -66,6 +66,7 @@ fAll([_|OtherActions],State,OtherApplicableActions) :-
   fAll(OtherActions,State,OtherApplicableActions).
 
 successor(_,[],[]) :- !.
+successor(node([1,2,3,4,5,6,empty,8,7],_,_,_),_,_) :- write('Fail.\n'),abort.
 successor(node(State,Gn,Hn,Father),[Action|OtherApplicableActions],[node(NewState,GnS,HnS,father(Action,node(State,Gn,Hn,Father)))|SuccessorList]) :-
   GnS is Gn + 1,
   transform(Action,State,NewState),

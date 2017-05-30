@@ -17,7 +17,7 @@ breadthfirstsearch :-
   bf_search([node(State,[])],[],Moves),
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
-  write(Moves).
+  write(Moves),!.
 
 bf_search([node(State,ActionList)|_],Visited,ActionList) :-
   final(State),!,
@@ -47,6 +47,7 @@ fAll([_|OtherActions],State,OtherApplicableActions) :-
   fAll(OtherActions,State,OtherApplicableActions).
 
 successor(_,[],_,[]) :- !.
+successor(node([1,2,3,4,5,6,empty,8,7],_),_,_,_) :- write('Fail.\n'),abort.
 successor(node(State,ActionList),[Action|OtherApplicableActions],Visited,[node(NewState,NewActionList)|SuccessorList]) :-
   transform(Action,State,NewState),
   \+member(NewState,Visited),!,

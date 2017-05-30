@@ -17,8 +17,9 @@ maxdepthsearch(Depth) :-
 	maxd_search(InitialState,Depth,[InitialState],Moves),
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
-	write(Moves).
+	write(Moves),!.
 
+maxd_search([1,2,3,4,5,6,empty,8,7],_,_,_):- write('Fail.\n'),abort.
 maxd_search(S,_,Visited,[]) :-
 	final(S),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
