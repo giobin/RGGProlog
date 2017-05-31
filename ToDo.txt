@@ -1,6 +1,0 @@
-1) Dobbiamo fermarci alla prima soluzione oppure ne vogliamo anche altre?
-2) Il gioco dell'8 ha sempre soluzione?
-3) Nella ricerca in profondità per il labirinto, quando espando un nodo prendo il minimo?
-4) Cosa prendiamo come costo delle azioni in metropolitana? Cioè la Gn come la calcola? Noi per ora usiamo Manhattan tra le stazioni.
-5) Quali sono le distanze reali tra le varie stazioni? Ci servirebbe per capire meglio l'euristica H
-6) Relazione: descrivere per ogni strategia le differenze tra i vari domini oppure descrivere per ogni dominio le strategie?
