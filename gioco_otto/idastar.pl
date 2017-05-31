@@ -27,7 +27,7 @@ idastar :-
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
-  write(Moves).
+  write(Moves),!.
 idastar :-
     retractall(currentMaxFn(_)),
     newMinFn(Fn),
@@ -35,34 +35,35 @@ idastar :-
     retractall(newMinFn(Fn)),
     idastar.
 
- i_star(State,Gn,Visited,[]) :-
-    final(State),
-    evaluate(State,0,Hn),
-    currentMaxFn(FnC),
-    Fn is Gn + Hn,
-    Fn =< FnC,!,
-    length(Visited,Length),
-    format('~w~w~n', ['Closed nodes : ',Length]).
- i_star(State,Gn,Visited,[Action|MovesSequence]) :-
-    evaluate(State,0,Hn),
-    currentMaxFn(FnC),
-    Fn is Gn + Hn,
-    Fn =< FnC,!,
-    applicable(Action,State),
-    transform(Action,State,NewState),
-    \+member(NewState,Visited),
-    GnNew is Gn + 1,
-    i_star(NewState,GnNew,[NewState|Visited],MovesSequence).
- i_star(State,Gn,_,_) :-
-    newMinFn(FnN),!,
-    evaluate(State,0,Hn),
-    Fn is Gn + Hn,
-    Fn =< FnN,
-    retractall(newMinFn(FnN)),
-    assertz(newMinFn(Fn)),
-    fail.
- i_star(State,Gn,_,_) :-
-    evaluate(State,0,Hn),
-    Fn is Gn + Hn,
-    assertz(newMinFn(Fn)),
-    fail.
+i_star([1,2,3,4,5,6,empty,8,7],_,_,_):- write('Fail.\n'),abort.
+i_star(State,Gn,Visited,[]) :-
+  final(State),
+  evaluate(State,0,Hn),
+  currentMaxFn(FnC),
+  Fn is Gn + Hn,
+  Fn =< FnC,!,
+  length(Visited,Length),
+  format('~w~w~n', ['Closed nodes : ',Length]).
+i_star(State,Gn,Visited,[Action|MovesSequence]) :-
+  evaluate(State,0,Hn),
+  currentMaxFn(FnC),
+  Fn is Gn + Hn,
+  Fn =< FnC,!,
+  applicable(Action,State),
+  transform(Action,State,NewState),
+  \+member(NewState,Visited),
+  GnNew is Gn + 1,
+  i_star(NewState,GnNew,[NewState|Visited],MovesSequence).
+i_star(State,Gn,_,_) :-
+  newMinFn(FnN),!,
+  evaluate(State,0,Hn),
+  Fn is Gn + Hn,
+  Fn =< FnN,
+  retractall(newMinFn(FnN)),
+  assertz(newMinFn(Fn)),
+  fail.
+i_star(State,Gn,_,_) :-
+  evaluate(State,0,Hn),
+  Fn is Gn + Hn,
+  assertz(newMinFn(Fn)),
+  fail.

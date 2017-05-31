@@ -17,7 +17,7 @@ depthsearch :-
 	d_search(InitialState,Moves),
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
-	write(Moves).
+	write(Moves),!.
 
 % Depthsearch with cycles control
 depthsearch_cc :-
@@ -26,8 +26,9 @@ depthsearch_cc :-
 	d_search_cc(InitialState,[InitialState],Moves),
 	length(Moves,Length),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
-	write(Moves).
+	write(Moves),!.
 
+d_search([1,2,3,4,5,6,empty,8,7],_):- write('Fail.\n'),abort.
 d_search(State,[]):-final(State),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
 	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
@@ -36,6 +37,7 @@ d_search(State,[Action|MovesSequence]):-
 	transform(Action,State,NewState),
 	d_search(NewState,MovesSequence).
 
+d_search_cc([1,2,3,4,5,6,empty,8,7],_,_):- write('Fail.\n'),abort.
 d_search_cc(State,Visited,[]):-
 	final(State),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
