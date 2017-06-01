@@ -14,10 +14,13 @@
 startItDeep :-
   retractall(currentMaxDepth(_)),
 	assertz(currentMaxDepth(0)),
+  assertz(counterClosedNodes(0)),
   statistics(walltime, [_ | [_]]),
 	iterativeDeepening(Moves),
   statistics(walltime, [_ | [ExecutionTime]]),
 	length(Moves,Length),
+  counterClosedNodes(Counter),
+  format('~w~w~n', ['Closed nodes : ',Counter]),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
   format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']),
 	write(Moves),!.
@@ -33,10 +36,10 @@ iterativeDeepening(Moves) :-
 	iterativeDeepening(Moves).
 
 it_deep([1,2,3,4,5,6,empty,8,7],_,_,_):- write('Fail.\n'),abort.
-it_deep(State,_,Visited,[]) :-
-  final(State),!,
-  length(Visited,Length),
-  format('~w~w~n', ['Closed nodes : ',Length]).
+it_deep(State,_,_,[]) :-
+  final(State),!.
+%  length(Visited,Length),
+%  format('~w~w~n', ['Closed nodes : ',Length]).
 it_deep(State,Depth,Visited,[Action|MovesSequence]) :-
 	NewDepth is Depth + 1,
 	currentMaxDepth(MaxDepth),
@@ -44,4 +47,8 @@ it_deep(State,Depth,Visited,[Action|MovesSequence]) :-
 	applicable(Action,State),
 	transform(Action,State,NewState),
 	\+member(NewState,Visited),
+  counterClosedNodes(Count),
+  Counter is Count+1,
+  retractall(counterClosedNodes(_)),
+  assertz(counterClosedNodes(Counter)),
 	it_deep(NewState,NewDepth,[NewState|Visited],MovesSequence).
