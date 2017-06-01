@@ -21,7 +21,7 @@ startItDeep :-
   length(Moves,Length),
   counterClosedNodes(Counter),
   format('~w~w~n', ['Closed nodes : ',Counter]),
-  format('~w~w~w~n', ['Solution length : ',Length, '.']),!,
+  format('~w~w~w~n', ['Solution length : ',Length, '.']),
 	write(Moves).
 
 iterativeDeepening(Moves) :-
