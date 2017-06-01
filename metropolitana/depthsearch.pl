@@ -21,12 +21,15 @@ depthsearch :-
 
 % Depthsearch with cycles control
 depthsearch_cc :-
+	assertz(counterClosedNodes(0)),
 	statistics(walltime, [_ | [_]]),
 	initial(InitialState),
 	d_search_cc(InitialState,[InitialState],Moves),
 	length(Moves,Length),
+  counterClosedNodes(Counter),
+  format('~w~w~n', ['Closed nodes : ',Counter]),
 	format('~w~w~w~n', ['Solution length : ',Length, '.']),
-	writeln(Moves).
+	writeln(Moves),!.
 
 d_search(State,[]):-
 	final(State),!,
@@ -37,14 +40,17 @@ d_search(State,[Action|MovesSequence]):-
 	transform(Action,State,NewState),
 	d_search(NewState,MovesSequence).
 
-d_search_cc(State,Visited,[]):-
+d_search_cc(State,_,[]):-
 	final(State),!,
 	statistics(walltime, [_ | [ExecutionTime]]),
-	length(Visited,Length),
-  format('~w~w~n', ['Closed nodes : ',Length]),
+  %format('~w~w~n', ['Closed nodes : ',Length]),
 	format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
 d_search_cc(State,Visited,[Action|MovesSequence]):-
 	applicable(Action,State),
 	transform(Action,State,NewState),
 	\+member(NewState,Visited),
+	counterClosedNodes(Count),
+  Counter is Count+1,
+  retractall(counterClosedNodes(_)),
+  assertz(counterClosedNodes(Counter)),
 	d_search_cc(NewState,[NewState|Visited],MovesSequence).

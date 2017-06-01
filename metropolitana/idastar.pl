@@ -19,12 +19,15 @@ startItDeepStar :-
   evaluate(InitialState,Hn),
   assertz(currentMaxFn(Hn)),
   assertz(cutoff),
-  idastar.
+  assertz(counterClosedNodes(0)),
+  idastar,!.
 
 idastar :-
   initial(InitialState),
   i_star(InitialState,0,[InitialState],Moves), %InitialState,Gn,ecc
   length(Moves,Length),
+  counterClosedNodes(Counter),
+  format('~w~w~n', ['Closed nodes : ',Counter]),
   format('~w~w~w~n', ['Solution length : ',Length, '.']),
   write(Moves).
 idastar :-
@@ -34,15 +37,13 @@ idastar :-
     retractall(newMinFn(Fn)),
     idastar.
 
- i_star(State,Gn,Visited,[]) :-
+ i_star(State,Gn,_,[]) :-
     final(State),
     statistics(walltime, [_ | [ExecutionTime]]),
     evaluate(State,Hn),
     currentMaxFn(FnC),
     Fn is Gn + Hn,
     Fn =< FnC,!,
-    length(Visited,Length),
-    format('~w~w~n', ['Closed nodes : ',Length]),
     format('~w~w~w~n', ['Time : ',ExecutionTime, 'ms.']).
  i_star(State,Gn,Visited,[Action|MovesSequence]) :-
     evaluate(State,Hn),
@@ -53,6 +54,10 @@ idastar :-
     transform(Action,State,NewState),
     \+member(NewState,Visited),
     GnNew is Gn + 1,
+    counterClosedNodes(Count),
+    Counter is Count+1,
+    retractall(counterClosedNodes(_)),
+    assertz(counterClosedNodes(Counter)),
     i_star(NewState,GnNew,[NewState|Visited],MovesSequence).
  i_star(State,Gn,_,_) :-
     applicable(_,State),        % It is necessary in case of no solution (similiar to cutoff in iterativedeeping)
